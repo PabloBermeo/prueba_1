@@ -1,0 +1,24 @@
+<div class="card col-md-12" style="padding:20px;text-align: left;">
+    <div class="form-group">
+        <label>Var Name:</label>
+        <input type="text" class="form-control" placeholder="Var Name"
+                [(ngModel)]="ncConfig.variableFullName">
+    </div>
+
+    <div class="form-group">
+        <label>Icon:</label>
+        <input type="text" class="form-control" placeholder="Icon"
+                [(ngModel)]="ncConfig.icon">
+    </div>
+    <label>Select Class</label>
+    <select [(ngModel)]="ncConfig.class" style="width:100%;height: 30px;">
+        <option *ngFor="let opClase of clases" [value]="opClase">{{opClase}}</option>
+    </select>
+    <label>Select Column Width</label>
+    <select [(ngModel)]="ncConfig.column" style="width:100%;height: 30px;">
+        <option *ngFor="let columnWidth of columnsWidth" [value]="columnWidth">{{columnWidth}}</option>
+    </select>
+    <div class="row pull-right" style="padding: 10px;">
+        <button (click)="sendConfig()">SEND</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="card" style="width:100%;">
+    <div slot="header" class="text-center">
+        <h4 class="card-title">{{config.selectedDevice.name}} - {{config.variableFullName}}</h4>
+        <h4 class="card-category">{{getTimeAgo((nowTime-time)/1000)}}</h4>
+        <i class="fa {{config.icon}} {{getIconColor()}}" style="font-size: 30px;vertical-align: middle;">&nbsp;&nbsp;</i>
+        <br>
+        <span>{{value.toFixed(config.decimalPlaces)}} {{config.unit}}</span>
+    </div>
+    <div class="card-body" class="text-center" style="align-content: center;text-align: center;">
+        <button (click)="getChartData()">Receive Data</button>
+        <div class="chart-area" style="height:300px;" *ngIf="isMounted && canvas!==undefined">
+            <canvas baseChart id="lineChartV1"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [legend]="false"
+                    [type]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"
+            ></canvas>
+            
+        </div>
+        
+
+        
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="card col-md-12" style="padding:20px;text-align: left;">
+    <div class="form-group">
+        <label>Var Name:</label>
+        <input type="text" class="form-control" placeholder="Var Name"
+                [(ngModel)]="indicatorConfig.variableFullName">
+    </div>
+    <div class="form-group">
+        <label>Icon:</label>
+        <input type="text" class="form-control" placeholder="Icon"
+                [(ngModel)]="indicatorConfig.icon">
+    </div>
+    <div class="form-group">
+        <label>Outside: Send Freq(sg):</label>
+        <input type="number" class="form-control" placeholder="Send Freq"
+                [(ngModel)]="indicatorConfig.variableSendFreq">
+    </div>
+    
+    <label>Select Class</label>
+    <select [(ngModel)]="indicatorConfig.class" style="width:100%;height: 30px;">
+        <option *ngFor="let opClase of clases" [value]="opClase">{{opClase}}</option>
+    </select>
+    <label>Select Column Width</label>
+    <select [(ngModel)]="indicatorConfig.column" style="width:100%;height: 30px;">
+        <option *ngFor="let columnWidth of columnsWidth" [value]="columnWidth">{{columnWidth}}</option>
+    </select>
+    <div class="row pull-right" style="padding: 10px;">
+        <button (click)="sendConfig()">SEND</button>
+    </div>
+</div>

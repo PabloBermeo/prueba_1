@@ -1,0 +1,42 @@
+<div class="login-container" >
+    <div class="col-lg-12 col-md-8 ml-auto mr-auto">
+        <div class="card-login card-white">
+            <div slot="header" class="text-center" style="vertical-align: middle;">
+                <img src="./assets/img/angular2-logo-red.png" alt="">
+                <h1 class="card-title">IoT-p64 UPS</h1>
+            </div>
+            <div style="text-align: left;">
+                <div class="form-group">
+                    <i class="fa fa-envelope text-warning" >&nbsp;&nbsp;</i> 
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="Email" 
+                            [(ngModel)]="user.email">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock text-danger" >&nbsp;&nbsp;</i> 
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password" 
+                            [(ngModel)]="user.password">
+                </div>
+            </div>
+            <div slot="footer">
+                <button type="primary" class="mb-3" (click)="login()"
+                        style="width:100%;">
+                    Login
+                </button>
+                <div class="pull-left">
+                    <a routerLink="/register">
+                        <i class="fas fa-arrow-alt-circle-left ">&nbsp;</i>
+                        <h6>Create Acount</h6>
+                    </a>
+                </div>
+                <div class="pull-right">
+                    <a routerLink="dashboard">
+                        <i class="fas fa-question-circle  ">&nbsp;</i>
+                        <h6>Need Help</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Add New Device</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Device Name</label>
+                  <input type="text" class="form-control" placeholder="Ex: Home, office,..." 
+                        [(ngModel)]="device.name" name="device_Name">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Id device</label>
+                  <input type="text" class="form-control" placeholder="Ex: 0777-9911" 
+                        [(ngModel)]="device.dId" name="device_dId" >
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="email">Template:</label>
+                  <select class="form-select" id="inputGroupS01" style="width:75%;height:35px"
+                          [(ngModel)]="templateSelected" name="template_Selected"
+                          >
+                    <option selected [disabled]="true" value="-1">Choose...</option>
+                    <option *ngFor="let template of templates;let i=index" value="{{i}}">
+                        {{template.name}}
+                    </option>
+                    
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+
+          </form>
+          <div class="row pull-right">
+            <div class="col-12">
+                <button type="button" class="btn btn-dark"
+                        (click)="addDevice()"
+                        style="background: linear-gradient(to right,#695a69,#000);">
+                    Add
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+     
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">All Devices List</h5>
+          <h4 class="card-title"> Devices Stats</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary" >
+                <th>Item</th>
+                <th>Device Name</th>
+                <th>Id Device</th>
+                <th>Password</th>
+                <th>Template</th>
+                <th style="text-align: center;">Actions</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let device of devices;let i=index">
+                  <td> {{i+1}}</td>
+                  <td>{{device.name}}</td>
+                  <td>{{device.dId}}</td>
+                  <td>{{device.password}}</td>
+                  <td>{{device.templateName}}</td>
+                  <td>
+                    <div class="row" style="justify-content: center;align-content: center;">
+                      <div class="col" style="vertical-align: middle;">
+                        <button type="button" class="btn btn-danger btn-round btn-icon"
+                              (click)="deleteDevice(i)"
+                              style="background: #de1010;">
+                              <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>  &nbsp;Delete
+                        <div class="form-switch col" style="vertical-align: middle;">
+                          <input class="form-check-input" type="checkbox" role="switch" 
+                                value="device.saverRule" (change)="updateSaverRule(i)"
+                                [checked]="status(i)"
+                                id="flexSwitchChecked"> &nbsp;&nbsp;
+                          <!-- <label class="form-check-lablel" for="flexSwitchChecked">{{device.namae}}</label> -->
+                          <i class="fas fa-database text-success" *ngIf="status(i)" for="flexSwitchChecked"></i>
+                          <i class="fas fa-database" *ngIf="!status(i)" for="flexSwitchChecked"></i>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

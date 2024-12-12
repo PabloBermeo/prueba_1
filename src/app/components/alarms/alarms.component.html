@@ -1,0 +1,131 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="main-content">
+    <div class="card text-center" *ngIf="selectedDeviceIndex<0">
+        <h2>Device Must be Selected </h2> 
+    </div>
+    <div class="row" *ngIf="selectedDeviceIndex>=0">
+        <div class="col-sm-12">
+            <div class="card text-center" *ngIf="devices.length>0">
+                <div class="card-header">
+                    <h4 class="title">Create New Alarm Rule in '{{devices[selectedDeviceIndex].name}}'</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <label>Widget</label>
+                            <select *ngIf="selectedDeviceIndex>=0" class="form-select"
+                                    id="inputGroupSelect01" style="width:75%;height: 35px;"
+                                    [(ngModel)]="selectedWidgetIndex">
+                                    <option [disabled]="true" selected value="-1">Widget...</option>
+                                    <option *ngFor="let widget of devices[selectedDeviceIndex].template!.widgets; let i=index"
+                                            value="{{i}}">
+                                            <div *ngIf="widget.variableFullName !== undefined && widget.variableFullName.length>0"> 
+                                                {{widget.variableFullName}}
+                                            </div>
+
+                                    </option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label>Condition</label>
+                            <select class="form-select" id="inputGroupSelect01"
+                                style="width:75%; height:35px;"
+                                [(ngModel)]="newRule.condition">
+                                <option class="text-dark" value="=">=</option>
+                                <option class="text-dark" value=">">></option>
+                                <option class="text-dark" value=">=">>=</option>
+                                <option class="text-dark" value="<">< </option>
+                                <option class="text-dark" value="<="><=</option>
+                                <option class="text-dark" value="!=">!=</option>
+                            </select>
+                            
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Threshold</label>
+                                <input type="number" class="form-control" [(ngModel)]="newRule.value" placeholder="Reference value">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Update cycle [sec.]</label>
+                                <input type="number" class="form-control" [(ngModel)]="newRule.triggerTime" placeholder="TriggerTime value">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pull-right">
+                        <div class="col-12">
+                            <button (click)="createAlarmRule()" type="button"
+                                class="btn btn-outlined-dark"
+                                style="background: linear-gradient(to right,#695a69,#000)">
+                                Add Alarm Rule
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="selectedDeviceIndex>=0 && alarmRules.length>0">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-category">All Alarms List</h5>
+              <h4 class="card-title"> Alarms Stats</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>Item</th>
+                    <th>Var Name</th>
+                    <th>Condition</th>
+                    <th>Value</th>
+                    <th>Update Time</th>
+                    <th>Matches</th>
+                    <th>Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let alarm of alarmRules;let i=index">
+                      <td> {{i+1}}</td>
+                      <td>{{alarm.variableFullName}}</td>
+                      <td>{{alarm.condition}}</td>
+                      <td>{{alarm.value}}</td>
+                      <td>{{alarm.triggerTime}}</td>
+                      <td>{{alarm.counter}}</td>
+                      <td>
+                        <div class="row" style="justify-content: center;align-content: center;">
+                          <div class="col" style="vertical-align: middle;">
+                            <button type="button" class="btn btn-danger btn-round btn-icon"
+                                  (click)="deleteAlarmRule(i)"
+                                  style="background: #de1010;">
+                                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>  &nbsp;Delete
+                            <div class="form-switch col" style="vertical-align: middle;">
+                              <input class="form-check-input" type="checkbox" role="switch" 
+                                    value="device.saverRule" (change)="updateAlarmRule(i)"
+                                    [checked]="status(i)"
+                                    id="flexSwitchChecked"> &nbsp;&nbsp;
+                              <!-- <label class="form-check-lablel" for="flexSwitchChecked">{{device.namae}}</label> -->
+                              <i class="fas fa-database text-success" *ngIf="status(i)" for="flexSwitchChecked"></i>
+                              <i class="fas fa-database" *ngIf="!status(i)" for="flexSwitchChecked"></i>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    
+    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

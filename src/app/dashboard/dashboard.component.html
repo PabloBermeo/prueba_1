@@ -1,0 +1,18 @@
+<div class="panel-header panel-header-sm" style="background-color: bisque;">
+</div>
+<div class="main-content">
+  <!-- Vista previa del DASHBOARD -->
+  <div class="card text-center col-md-12" 
+        *ngIf="selectedDeviceIndex>=0 && widgets().length>0" style="padding:10px;">
+    <div class="row">
+        <div *ngFor="let widget of widgets();let i=index" class="{{widget.column}}">
+                <app-numberchart *ngIf="widget.widget==='numberChart'" [config]="widget" [demo]="false"></app-numberchart>
+                <app-iotswitch *ngIf="widget.widget==='switch'" [config]="widget"></app-iotswitch>
+                <app-iotbutton *ngIf="widget.widget==='button'" [config]="widget"></app-iotbutton>
+                <app-iotindicator *ngIf="widget.widget==='indicator'" [config]="widget"></app-iotindicator>
+
+        </div>
+    </div>
+
+  </div>
+</div>

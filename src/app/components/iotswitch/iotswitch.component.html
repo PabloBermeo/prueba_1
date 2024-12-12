@@ -1,0 +1,10 @@
+<div class="card" style="width:100%;">
+    <div slot="header" class="text-center">
+        <h4 class="card-title">{{config.selectedDevice.name}} - {{config.variableFullName}}</h4>
+    </div>
+    <div class="card-body" class="text-center" style="align-content: center;text-align: center;">
+        <i class="fa {{config.icon}} {{getIconColor()}}" style="font-size: 30px;vertical-align: middle;">&nbsp;&nbsp;</i>
+        <div class="btn btn-outline-secondary" (click)="sendValue()"
+                    type="config.class">ON/OFF{{config.text}}</div>
+    </div>
+</div>
